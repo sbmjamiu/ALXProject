@@ -416,6 +416,7 @@ def edit_venue_submission(venue_id):
     db.session.rollback()
     print(sys.exc_info())
     flash('An error occurred. Venue ' + form.name.data + ' could not be edited.')
+    flash('Make sure the phone number is not empty and does not contain space or dash')
   finally: 
     db.session.close()
   return redirect(url_for('show_venue', venue_id=venue_id))
@@ -454,6 +455,7 @@ def create_artist_submission():
   except:
     db.session.rollback()
     flash('An error occurred. Artist ' + form.name.data + ' could not be listed.')
+    flash('Make sure the phone number is not empty and does not contain space or dash')
     print(sys.exc_info())
   finally:
     db.session.close()
